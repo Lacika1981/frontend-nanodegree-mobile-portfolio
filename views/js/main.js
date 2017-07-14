@@ -517,8 +517,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   }
 }*/
 
+var items = document.getElementsByClassName('mover');
+
 function updatePositions() {
-  var items = document.querySelectorAll('.mover');
   itemsLength = items.length;
   frame++;
   window.performance.mark("mark_start_frame");
@@ -526,7 +527,6 @@ function updatePositions() {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     var left = items[i].basicLeft + 100 * phase + 'px';
     items[i].style.transform = 'translateX(' + left + ')';
-    console.log(items[i].style.transform);
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -552,12 +552,14 @@ document.addEventListener('DOMContentLoaded', function() {
   var row = screenHeight / s;
   for (var i = 0; i < row * 8; i++) {
     var elem = document.createElement('img');
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.style.left = 100 * phase + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
