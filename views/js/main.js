@@ -492,16 +492,10 @@ var items = document.getElementsByClassName('mover');
 function updatePositions() {
   itemsLength = items.length;
   frame++;
-  // taking the phase out from the for loop
-  var phases = []; // adding each phases to the array
-  for (var j = 0; j < 5; j++){
-    var phase = Math.sin((document.body.scrollTop / 1250) + (j));
-    phases.push(phase);
-  }
-
   window.performance.mark("mark_start_frame");
   for (var i = 0; i < itemsLength; i++) {
-    var left = items[i].basicLeft + 100 * phases[i % 5] + 'px'; // getting the phases from the array
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var left = items[i].basicLeft + 100 * phase + 'px';
     items[i].style.transform = 'translateX(' + left + ')';
   }
 
