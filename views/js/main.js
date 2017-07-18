@@ -492,7 +492,7 @@ var items = document.getElementsByClassName('mover'); // get all the pizzas with
 var items = document.getElementsByClassName('mover');
 
 function updatePositions() {
-  itemsLength = items.length;
+  var itemsLength = items.length;
   frame++;
   // taking the phase out from the for loop
   var phases = []; // adding each phases to the array
@@ -524,8 +524,8 @@ window.addEventListener('scroll', function(){
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
   var screenHeight = window.innerHeight;
+  var cols = 8;
   var s = 256;
   var row = screenHeight / s;
   for (var i = 0; i < row * 8; i++) {
